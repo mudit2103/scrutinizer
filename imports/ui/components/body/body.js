@@ -4,6 +4,9 @@ import { ReactiveVar } from 'meteor/reactive-var';
  
 import './body.html';
 import './body.css';
+import '../applicants/applicants.js';
+import '../interview/interview.js';
+import '../questions/questions.js';
 
 Template.body.onCreated(function bodyOnCreated() {
   this.activeTemplate = new ReactiveVar('applicants');
