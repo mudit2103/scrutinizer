@@ -9,10 +9,11 @@ A fancier name for "Interviewer". Intended to be used internally for CSM leaders
 ## File Structure
 - `imports/api` - Model layer for object CRUD
 - `imports/ui/components` - directories divided by feature name
-  - `body` defines overall layout and wraps individual feature templates
-    - Global events or helpers should go in `body.js`
+  - `layout` defines overall layout and wraps individual feature templates
+    - Global events or helpers should go in `layout.js`
   - Feature's controller logic + Blaze template should only go in its directory
   - Feature-specific CSS should go in corresponding folder and be imported by corresponding `.js` file
+- `imports/ui/components/layouts/layout.routes.js` - Routes are here
 - `client` - global CSS should go in here. 
 - `server` - imports
 - [More notes from Meteor docs](https://guide.meteor.com/structure.html)
