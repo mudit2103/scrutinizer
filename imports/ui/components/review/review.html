@@ -1,0 +1,18 @@
+<template name="review">
+  <table>
+    <thead>
+      <tr>
+          <th data-field="name">Name</th>
+          <th data-field="email">Email</th>
+          <th data-field="year">Year</th>
+          <th data-field="roles">Applying for</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each applicants}}
+        {{> reviewRow}}
+      {{/each}}
+    </tbody>
+  </table>
+</template>

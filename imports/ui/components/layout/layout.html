@@ -1,22 +1,22 @@
 <template name="layout">
   <nav>
     <div class="nav-wrapper primary">
-      <span class="brand-logo center">Scrutinizer</span>
+      <span class="brand-logo center">CSM Scrutinizer</span>
       {{#if currentUser}}
         <ul id="nav-mobile" class="left">
-          <li><a id="showApplicants" href="/applicants">Applicants</a></li>
-          <li><a id="showQuestions" href="/questions">Questions</a></li>
+          <li><a id="showInterview" href="/review">Review</a></li>
           <li><a id="showInterview" href="/interview">Interview</a></li>
         </ul>
 
         <ul id="nav-mobile" class="right">
+          <li><a id="showMeta" href="/manage">Manage</a></li>
+          <li><a id="showQuestions" href="/questions">Edit Questions</a></li>
           <li><a id="signout" href="/">Sign out</a></li>
         </ul>
       {{/if}}
     </div>
   </nav>
   <div class="container">
-    <!-- There doesn't appear to be a better way to do this without more libraries -->
     {{#if currentUser}}
       {{> yield}}
     {{else}}

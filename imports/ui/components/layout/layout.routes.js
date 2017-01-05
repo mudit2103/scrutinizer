@@ -5,11 +5,15 @@ Router.configure({
 });
 
 Router.route('/', function() {
-  this.render('applicants')
+  this.render('review')
 });
 
-Router.route('/applicants', function() {
-  this.render('applicants');
+Router.route('/review', function() {
+  this.render('review');
+});
+
+Router.route('/manage', function() {
+  this.render('manage');
 });
 
 Router.route('/interview', function() {
