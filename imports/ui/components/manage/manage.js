@@ -7,10 +7,8 @@ import './manage.html';
 import './manage.css';
 
 Template.manage.onCreated(function() {
-
   this.uploading = new ReactiveVar(false);
   this.uploadErrors = new ReactiveVar([]);
-  this.renderedRoleSelect = false;
 });
 
 Template.manage.onRendered(function() {

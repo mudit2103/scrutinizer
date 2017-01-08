@@ -1,0 +1,41 @@
+.questions-header {
+  max-width: 400px;
+  margin: 24px auto 0;
+}
+.fa, .collection-item, tr {
+  cursor: pointer;
+}
+.edit-question {
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: #F1F8E9;
+}
+.exit {
+  float: right;
+}
+.usage {
+  padding: 8px;
+  background-color: #C5E1A5;
+  height: 2.5em;
+}
+.usage .fa {
+  position: relative;
+  top: -4px;
+  color: #F44336;
+  z-index: 99;
+}
+.delete:hover {
+  color: #F44336;
+}
+.current-role {
+  margin-bottom: 24px;
+}
+.change-button {
+  margin-left: 18px;
+  position: relative;
+  top: -6px;
+}
+h5 {
+  display: inline-block;
+}

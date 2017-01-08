@@ -13,6 +13,9 @@ export const Roles = new Mongo.Collection('roles');
 
 if (Meteor.isServer) {
   Meteor.publish('roles', function() {
+    if (!this.userId) {
+      return null;
+    }
     return Roles.find({});
   });
 }

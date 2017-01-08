@@ -1,0 +1,33 @@
+<template name="question">
+    {{#if editing}}
+    <div class="row edit-question">
+      <div class="usage"><p>Press ENTER to save changes<i class="exit fa fa-times-circle fa-2x" aria-hidden="true"></i></p></div>
+      <br>
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="category" value="{{category}}" type="text" class="validate">
+            <label for="category">Category</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="priority" value="{{priority}}" type="text" class="validate">
+            <label for="priority">Priority (higher = closer to the top)</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="text" value="{{text}}" type="text" class="validate">
+            <label for="text">Text</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    {{else}}
+    <tr>
+      <td>{{text}}</td>
+      <td>{{category}}</td>
+      <td>{{priority}}</td>
+      <td><i class="delete fa fa-trash" aria-hidden="true"></i></td>
+    </tr>
+    {{/if}}
+</template>

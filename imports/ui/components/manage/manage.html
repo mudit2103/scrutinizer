@@ -1,49 +1,51 @@
 <template name="manage">
-  <div class="row">
-    <div class="col s12 m6">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Applicants</span>
-          <p>This utility adds applicants to the database through a CSV file. The CSV should have <b>no header row</b> and have columns in the order of: <b>Name, Email, Year</b></p>
-          <br>
-            <div class="input-field">
-              <select class="role-select">
-                <option value="" disabled selected>Choose role</option>
-              </select>
-              <label>Role to import applicants to:</label>
-            </div>
-        </div>
-        <div class="card-action">
-          {{#unless uploading}}
-            <input type="file" name="file" id="file" class="input-csv" /><label class="primary-t" for="file">Choose file</label>
-          {{else}}
-            <i class="fa fa-spin fa-refresh"></i> Uploading files...
-          {{/unless}}
+  <div class="content">
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Applicants</span>
+            <p>This utility adds applicants to the database through a CSV file. The CSV should have <b>no header row</b> and have columns in the order of: <b>Name, Email, Year</b></p>
+            <br>
+              <div class="input-field">
+                <select class="role-select">
+                  <option value="" disabled selected>Choose role</option>
+                </select>
+                <label>Role to import applicants to:</label>
+              </div>
+          </div>
+          <div class="card-action">
+            {{#unless uploading}}
+              <input type="file" name="file" id="file" class="input-csv" /><label class="primary-t" for="file">Choose file</label>
+            {{else}}
+              <i class="fa fa-spin fa-refresh"></i> Uploading files...
+            {{/unless}}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  {{#if showUploadErrors}}
-  <div class="row">
-    <div class="col s12 m6">
-      <table>
-          <thead>
-            <tr>
-                <th data-field="number">Row number</th>
-                <th data-field="reason">Reason</th>
-            </tr>
-          </thead>
+    {{#if showUploadErrors}}
+    <div class="row">
+      <div class="col s12 m6">
+        <table>
+            <thead>
+              <tr>
+                  <th data-field="number">Row number</th>
+                  <th data-field="reason">Reason</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {{#each uploadError in uploadErrors}}
-            <tr>
-              <td>{{uploadError.row}}</td>
-              <td>{{uploadError.reason}}</td>
-            </tr>
-            {{/each}}
-          </tbody>
-      </table>
+            <tbody>
+              {{#each uploadError in uploadErrors}}
+              <tr>
+                <td>{{uploadError.row}}</td>
+                <td>{{uploadError.reason}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+        </table>
+      </div>
     </div>
+    {{/if}}
   </div>
-  {{/if}}
 </template>

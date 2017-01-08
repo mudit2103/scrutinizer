@@ -1,3 +1,41 @@
 <template name="questions">
-  <h1>Questions template</h1>
+  <div class="content">
+    {{#if choosingRole}}
+    <div class="questions-header">
+      <div class="card-panel">
+        Edit questions for:
+        <div class="collection">
+          <a class="collection-item">All</a>
+          {{#each r in roles}}
+          <a class="collection-item">{{r._id}}</a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="current-role"><h5>Questions for <b>{{role}}</b> </h5><a class="change-button waves-effect waves-light btn"><i class="fa fa-pencil"></i> Change</a></div>
+    <div class="card">
+      <div class="card-content">
+        <table>
+          <thead>
+            <tr>
+              <th data-field="text">Text</th>
+              <th data-field="category">Category</th>
+              <th data-field="priority">priority</th>
+              <th data-field="delete"><i class="fa fa-trash" aria-hidden="true"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each questions}}
+              {{> question}}
+            {{/each}}
+          </tbody>
+        </table>
+        <br>
+        <a class="add-question waves-effect waves-light btn primary">+ Add Question</a>
+      </div>
+    </div>
+    {{/if}}
+  </div>
 </template>
+
