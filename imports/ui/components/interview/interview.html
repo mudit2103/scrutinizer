@@ -1,3 +1,58 @@
 <template name="interview">
-  <h1>Interview template</h1>
+  <div class="content">
+    {{#if choosingApplicant}}
+    <div class="interview-header">
+      <div class="card-panel">
+        <div class="row">
+          <div class="col s6">
+            <h5>I am interviewing </h5>
+            <div class="input-field inline"> 
+              <input placeholder="Start typing..." id="name" type="text" class="validate">
+            </div>
+            <div class="collection">
+              {{#each applicant in applicants}}
+                <a class="applicant-item collection-item" email="{{applicant._id}}">{{applicant.name}}</a>
+              {{/each}}
+            </div>
+          </div>
+          <div class="col s6">
+            <div class="role-select-spacer"></div>
+            <h5> for the role of </h5>
+            <div class="collection">
+              {{#each r in roles}}
+                <a class="role-item collection-item">{{r._id}}</a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="current-role"><h5>I am interviewing <b>{{name}}</b> for <b>{{role}}</b> </h5><a class="change-button waves-effect waves-light btn"><i class="fa fa-pencil"></i> Change</a></div>
+    <div class="score-card">
+      <div class="save-interviewing primary-t">save</div>
+      <form action="#">
+        <div class="row">
+          <div class="input-field col s6">
+            <h5>Score: {{score}}</h5>
+            <p class="range-field">
+              <input type="range" id="score" min="1" max="5" step="0.5"/>
+            </p>
+          </div>
+          <div class="input-field col s6">
+            <textarea id="notes" class="materialize-textarea"></textarea>
+            <label class="active" for="notes">Notes</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card questions-card">
+      <div class="card-content">
+        {{#each questions}}
+          {{> qna}}
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+  </div>
 </template>

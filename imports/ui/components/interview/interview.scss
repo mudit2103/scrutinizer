@@ -1,0 +1,30 @@
+.input-field.inline {
+  display: inline-block;
+}
+.role-select-spacer {
+  margin-top: 1rem;
+}
+h5 {
+  font-size: 1.4rem;
+}
+.score-card {
+  padding: 20px;
+  border: 2px solid #66BB6A;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.questions-card {
+  max-height: 450px;
+  overflow: scroll;
+}
+.save-interviewing {
+  text-transform: uppercase;
+  cursor: pointer;
+  float: right;
+  z-index: 99;
+  transition-duration: 0.4s;
+  height: 0px;
+}
+.save-interviewing:hover {
+  transform: scale(1.2);
+}

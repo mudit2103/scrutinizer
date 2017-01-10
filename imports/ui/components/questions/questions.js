@@ -32,7 +32,7 @@ Template.questions.helpers({
     return Roles.find({});
   },
   questions() {
-    return Questions.find({role: Template.instance().role.get()}, {sort: {priority: -1}});
+    return Questions.find({role: Template.instance().role.get()}, {sort: {category: -1, priority: -1}});
   },
 });
 
