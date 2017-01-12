@@ -17,7 +17,7 @@ h5 {
   max-height: 450px;
   overflow: scroll;
 }
-.save-interviewing {
+.save-interviewing, .save-qna {
   text-transform: uppercase;
   cursor: pointer;
   float: right;
@@ -25,6 +25,15 @@ h5 {
   transition-duration: 0.4s;
   height: 0px;
 }
-.save-interviewing:hover {
+.save-interviewing:hover, .save-qna:hover {
   transform: scale(1.2);
+}
+.qna-wrapper {
+  transition-duration: 0.3s;
+  margin-bottom: 12px;
+}
+.qna-wrapper:hover {
+  padding: 12px;
+  border: 2px solid #66BB6A;
+  border-radius: 4px;
 }

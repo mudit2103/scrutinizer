@@ -11,6 +11,11 @@ import './interview.scss';
 import './qna.js';
 
 Template.interview.onCreated(function() {
+  Meteor.subscribe('roles');
+  Meteor.subscribe('questions');
+  Meteor.subscribe('applicants');
+  Meteor.subscribe('interviewing.mine');
+
   this.choosingApplicant = new ReactiveVar(true);
   this.applicant = new ReactiveDict();
   this.role = new ReactiveVar('');
@@ -19,13 +24,6 @@ Template.interview.onCreated(function() {
   this.nameInput = new ReactiveVar('');
   this.nameSelected = false;
   this.roleSelected = false;
-});
-
-Template.interview.onRendered(function() {
-  Meteor.subscribe('roles');
-  Meteor.subscribe('questions');
-  Meteor.subscribe('applicants');
-  Meteor.subscribe('interviewing.mine');
 });
 
 Template.interview.helpers({
@@ -37,6 +35,9 @@ Template.interview.helpers({
   },
   name() {
     return Template.instance().applicant.get('name');
+  },
+  applicant_id() {
+    return Template.instance().applicant.get('id');
   },
   role() {
     return Template.instance().role.get();
@@ -51,7 +52,11 @@ Template.interview.helpers({
     }
   },
   questions() {
-    return Questions.find({$or: [{role: Template.instance().role.get()}, {role: ''}]}, {sort: {category: -1, priority: -1}});
+    return Questions.find({$or: [{role: Template.instance().role.get()}, {role: ''}]}, {sort: {category: -1, priority: -1}})
+              .map(function(question) {
+                question.applicant_id = Template.instance().applicant.get('id');
+                return question;
+              });
   },
 });
 
@@ -117,6 +122,7 @@ function doneSelecting(instance) {
 
       // Dumb solution to Template not updating its HTML when choosingApplicant changes
       setTimeout(function() {
+        $('#score').val(interviewing.score);
         $('#notes').val(interviewing.notes);
       }, 400);
     } else {

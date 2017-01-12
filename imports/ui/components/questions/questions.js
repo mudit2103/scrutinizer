@@ -8,13 +8,11 @@ import './questions.css';
 import './question.js';
 
 Template.questions.onCreated(function() {
-  this.choosingRole = new ReactiveVar(false);
-  this.role = new ReactiveVar(Session.get('role'));
-});
-
-Template.questions.onRendered(function() {
   Meteor.subscribe('roles');
   Meteor.subscribe('questions');
+
+  this.choosingRole = new ReactiveVar(false);
+  this.role = new ReactiveVar(Session.get('role'));
 });
 
 Template.questions.helpers({

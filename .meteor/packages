@@ -20,7 +20,7 @@ shell-server@0.2.1            # Server-side component of the `meteor shell` comm
 
 reactive-dict
 fourseven:scss
-materialize:materialize
+materialize:materialize@=0.97.7
 useraccounts:materialize
 accounts-password
 iron:router
