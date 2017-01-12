@@ -9,13 +9,8 @@ import { Roles } from './roles.js';
   _id: '<email address>''
   name: 'first last'
   year: 'senior'
-  roles: [
-            {
-                role_id: ‘61b jm’
-                status: ‘pending’
-            },
-            ...
-          ]
+  roles: ['61b jm', '61a sm', ... ]
+  statuses: ['pending', 'accepted', ...]
 }
 */
 export const Applicants = new Mongo.Collection('applicants');
@@ -62,30 +57,43 @@ Meteor.methods({
 
     _.each(applicants, function(applicant) {
       const oldApplicant = Applicants.findOne({_id: applicant._id});
-      const newRole = {role_id: role, status: STATUS.pending};
 
       if (oldApplicant) {
-        if (oldApplicant.roles) {
-          var duplicate = false;
-          for (var i = 0; i < oldApplicant.roles.length; i++) {
-            if (role === oldApplicant.roles[i].role_id) {
-              duplicate = true;
-              break;
-            }
-          }
-          if (!duplicate) {
-            Applicants.update({_id: oldApplicant._id}, {$push: {roles: newRole}});
-          }
+        if (oldApplicant.roles && !oldApplicant.roles.includes(role)) {
+          Applicants.update({_id: oldApplicant._id}, {$push: {roles: role, statuses: 'pending'}});
         } else {
-          Applicants.update({_id: oldApplicant._id}, {$set: {roles: [newRole]}});
+          Applicants.update({_id: oldApplicant._id}, {$set: {roles: [role], statuses: ['pending']}});
         }
         updates++;
       } else {
-        applicant.roles = [newRole];
+        applicant.roles = [role];
+        applicant.statuses = ['pending'];
         Applicants.insert(applicant);
       }
     });
 
     return updates;
   },
+  'applicants.setStatus'({id, role, status}) {
+    requireLogin(this.userId);
+
+    check(role, String);
+    if (!Roles.findOne({_id: role})) {
+      throw new Meteor.Error('Invalid role');
+    }
+    check(id, String);
+    check(status, String);
+
+    const applicant = Applicants.findOne({_id: id});
+    if (applicant) {
+      const idx = applicant.roles.indexOf(role);
+      if (idx === -1) {
+        throw new Meteor.Error('Invalid role');
+      }
+      applicant.statuses[idx] = status;
+      Applicants.update({_id: id}, {$set: {statuses: applicant.statuses}});
+    } else {
+      throw new Meteor.Error('Applicant not found with given id');
+    }
+  }
 });

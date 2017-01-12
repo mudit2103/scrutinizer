@@ -95,9 +95,9 @@ Template.interview.events({
       notes: $('#notes').val()
     }, function(err) {
       if (err) {
-        Materialize.toast(err.reason, 6000);
+        Materialize.toast(err.reason, 4000);
       } else {
-        Materialize.toast('Saved score and notes', 6000);
+        Materialize.toast('Saved score and notes', 4000);
       }
     });
   },
@@ -133,7 +133,7 @@ function doneSelecting(instance) {
         notes: ''
       }, function(err) {
         if (err) {
-          Materialize.toast(err.reason, 6000);
+          Materialize.toast(err.reason, 4000);
           instance.choosingApplicant.set(true);
           instance.nameSelected = false;
           instance.roleSelected = false;

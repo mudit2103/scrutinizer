@@ -1,18 +1,34 @@
 <template name="review">
-  <table>
-    <thead>
-      <tr>
-          <th data-field="name">Name</th>
-          <th data-field="email">Email</th>
-          <th data-field="year">Year</th>
-          <th data-field="roles">Applying for</th>
-      </tr>
-    </thead>
+  <div class="content">
+    {{#if choosingRole}}
+    <div class="questions-header">
+      <div class="card-panel">
+        Review applicants for:
+        <div class="collection">
+          {{#each r in roles}}
+          <a class="collection-item">{{r._id}}</a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="current-role"><h5>Applicants for <b>{{role}}</b> </h5><a class="change-button waves-effect waves-light btn"><i class="fa fa-pencil"></i> Change</a></div>
+    <table class="highlight">
+      <thead>
+        <tr>
+            <th data-field="scores">Scores</th>
+            <th data-field="name">Name</th>
+            <th data-field="email">Email</th>
+            <th data-field="year">Year</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      {{#each applicants}}
-        {{> reviewRow}}
-      {{/each}}
-    </tbody>
-  </table>
+      <tbody>
+        {{#each applicants}}
+          {{> reviewRow}}
+        {{/each}}
+      </tbody>
+    </table>
+    {{/if}}
+  </div>
 </template>

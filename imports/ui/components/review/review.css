@@ -1,0 +1,15 @@
+.interviewer {
+  text-transform: uppercase;
+  color: #546E7A !important;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.reject {
+  background-color: #B71C1C !important;
+}
+.accepted {
+  background-color: #DCEDC8 !important;
+}
+.rejected {
+  background-color: #FFCCBC !important;
+}

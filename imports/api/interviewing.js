@@ -33,14 +33,16 @@ Meteor.methods({
     check(score, Number);
     check(notes, String);
 
+    const user_id = Meteor.user().emails[0].address;
+
     const selector = {
-      user_id: this.userId,
+      user_id: user_id,
       applicant_id: applicant_id,
       role: role
     };
     const modifier = {
       $set: {
-        user_id: this.userId,
+        user_id: user_id,
         applicant_id: applicant_id,
         role: role,
         score: score,

@@ -1,8 +1,35 @@
 <template name="reviewRow">
-  <tr>
+  <tr class="table-row {{statusClass}}">
+    <td><b>{{formattedScores}}</b></td>
     <td>{{name}}</td>
     <td>{{_id}}</td>
     <td>{{year}}</td>
-    <td>{{formattedRoles}}</td>
   </tr>
+  {{#if showMore}}
+  <tr>
+    <td colspan="4">
+    <a class="waves-effect waves-light btn primary accept">accept {{firstName}}</a>
+    <a class="waves-effect waves-light btn reject">reject</a>
+    <a class="waves-effect waves-light btn skip">skip</a>
+    {{#each notecards}}
+      <div class="card">
+        <div class="card-content">
+          <p class="interviewer">notes from {{interviewer}} ({{interviewer_score}})</p>
+          <br>
+          <p>{{interviewer_notes}}</p>
+        </div>
+      </div>
+    {{/each}}
+    {{#each answers}}
+      <div class="card">
+        <div class="card-content">
+          <p class="interviewer">{{question}}</p>
+          <br>
+          <p>{{text}}</p>
+        </div>
+      </div>
+    {{/each}}
+    </td>
+  </tr>
+  {{/if}}
 </template>
