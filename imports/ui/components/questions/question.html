@@ -1,33 +1,35 @@
 <template name="question">
+  <tr>
     {{#if editing}}
-    <div class="row edit-question">
-      <div class="usage"><p>Press ENTER to save changes<i class="exit fa fa-times-circle fa-2x" aria-hidden="true"></i></p></div>
-      <br>
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="category" value="{{category}}" type="text" class="validate">
-            <label for="category">Category</label>
+    <td colspan="4">
+      <div class="row edit-question">
+        <div class="usage"><p>Press ENTER to save changes<i class="exit fa fa-times-circle fa-2x" aria-hidden="true"></i></p></div>
+        <br>
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="category" value="{{category}}" type="text" class="validate">
+              <label for="category">Category</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="priority" value="{{priority}}" type="text" class="validate">
+              <label for="priority">Priority (higher = closer to the top)</label>
+            </div>
           </div>
-          <div class="input-field col s6">
-            <input id="priority" value="{{priority}}" type="text" class="validate">
-            <label for="priority">Priority (higher = closer to the top)</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="text" value="{{text}}" type="text" class="validate">
+              <label for="text">Text</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="text" value="{{text}}" type="text" class="validate">
-            <label for="text">Text</label>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </td>
     {{else}}
-    <tr>
-      <td>{{text}}</td>
-      <td>{{category}}</td>
-      <td>{{priority}}</td>
-      <td><i class="delete fa fa-trash" aria-hidden="true"></i></td>
-    </tr>
+    <td class="edit-region">{{text}}</td>
+    <td class="edit-region">{{category}}</td>
+    <td class="edit-region">{{priority}}</td>
+    <td><i class="delete fa fa-trash" aria-hidden="true"></i></td>
     {{/if}}
+  </tr>
 </template>

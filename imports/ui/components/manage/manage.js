@@ -33,9 +33,39 @@ Template.manage.helpers({
   uploadErrors() {
     return Template.instance().uploadErrors.get();
   },
+  roles() {
+    return Roles.find({})
+  },
 });
 
 Template.manage.events({
+  'click .delete-role'(event, instance) {
+    var role = $(event.target).parent().text();
+    role = role.replace(/\(.*\)/, '');
+    role = role.substring(0, role.length - 1);
+
+    Meteor.call('roles.remove', role, function(err) {
+      if (err) {
+        toast(err.reason);
+      } 
+    });
+  },
+  'submit .role-submit'(event, instance) {
+    event.preventDefault();
+    const role = $('#role-input').val();
+    var limit = parseInt($('#limit-input').val());
+    if (limit === NaN) {
+      limit = undefined;
+    }
+
+    Meteor.call('roles.new', {id: role, limit: limit}, function(err) {
+      if (err) {
+        toast(err.reason);
+      }
+    });
+    $('#role-input').val('');
+    $('#limit-input').val('')
+  },
   'change .input-csv'(event, instance) {
     event.preventDefault();
 

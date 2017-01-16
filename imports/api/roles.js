@@ -1,12 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { check } from 'meteor/check';
 import { requireLogin } from './utils.js';
 
 /** Role Schema
 {
   _id: ‘61b jm’
   link: 'url to Google Sheet'
-  spots: 20
+  limit: 20
 }
 */
 export const Roles = new Mongo.Collection('roles');
@@ -19,3 +20,21 @@ if (Meteor.isServer) {
     return Roles.find({});
   });
 }
+
+Meteor.methods({
+  'roles.new'({id, limit}) {
+    requireLogin(this.userId);
+    check(id, String);
+    if (limit) {
+      check(limit, Number);
+    }
+
+    Roles.insert({_id: id, limit: limit});
+  }, 
+  'roles.remove'(id) {
+    requireLogin(this.userId);
+    check(id, String);
+
+    Roles.remove({_id: id});
+  },
+});

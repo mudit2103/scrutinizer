@@ -23,10 +23,40 @@
           </div>
         </div>
       </div>
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Manage Roles</span>
+            <form class="role-submit">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="role-input" type="text" class="validate">
+                  <label for="role-input">Role name*</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="limit-input" type="number" class="validate">
+                  <label for="limit-input">Limit</label>
+                </div>
+              </div>
+              <div class="row">
+                <button class="add-role btn waves-effect waves-light primary" type="submit" name="action">Add role</button>
+              </div>
+            </form>
+            <br>
+            <ul class="collection">
+              {{#each r in roles}}
+              <li class="collection-item">{{r._id}} ({{r.limit}} spots)<i class="delete-role fa fa-trash" aria-hidden="true"></i></li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
     {{#if showUploadErrors}}
     <div class="row">
-      <div class="col s12 m6">
+      <div class="col s12">
         <table>
             <thead>
               <tr>

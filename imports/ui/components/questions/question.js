@@ -16,7 +16,7 @@ Template.question.helpers({
 });
 
 Template.question.events({
-  'click tr'(event, instance) {
+  'click .edit-region'(event, instance) {
     instance.editing.set(true);
   },
   'mouseenter .edit-question'() {
@@ -26,9 +26,12 @@ Template.question.events({
     if (event.which === 13) {
       event.stopPropagation();
       const category = $('input#category').val();
-      const priority = $('input#priority').val();
       const text = $('input#text').val();
+      var priority = parseInt($('input#priority').val());
 
+      if (priority === NaN) {
+        priority = 0;
+      }
       Meteor.call('questions.update', {id: this._id, category: category, priority: priority, text: text}, function(err) {
         if (err) {
           toast(err.reason);

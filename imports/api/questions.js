@@ -20,7 +20,7 @@ Meteor.methods({
     requireLogin(this.userId);
     check(text, String);
     check(category, String);
-    check(priority, String);
+    check(priority, Number);
 
     Questions.update(id, {$set: {text: text, category: category, priority: priority}});
   },
@@ -36,6 +36,6 @@ Meteor.methods({
   'questions.remove'(id) {
     requireLogin(this.userId);
 
-    Questions.remove(id);
+    Questions.remove({_id: id});
   },
 });

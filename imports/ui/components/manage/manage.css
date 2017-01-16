@@ -11,3 +11,16 @@
   font-size: 1em;
   text-transform: uppercase;
 }
+.role-submit {
+  padding: 0px 24px;
+  border: 2px solid #66BB6A;
+}
+.add-role {
+  min-width: 100%;
+}
+.delete-role {
+  float: right;
+}
+.delete-role:hover {
+  color: #F44336;
+}

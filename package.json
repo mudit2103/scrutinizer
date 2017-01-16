@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
+    "clipboard": "^1.5.16",
     "meteor-node-stubs": "~0.2.0"
   }
 }

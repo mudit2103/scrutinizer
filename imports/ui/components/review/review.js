@@ -7,6 +7,7 @@ import { Interviewing } from '../../../api/interviewing.js';
 import './review.html';
 import './review.css';
 import './reviewRow.js';
+import './emailsCopyable.js';
 
 Template.review.onCreated(function() {
   Meteor.subscribe('applicants');
@@ -16,6 +17,14 @@ Template.review.onCreated(function() {
 
   this.choosingRole = new ReactiveVar(true);
   this.role = new ReactiveVar('');
+  this.showAccepted = new ReactiveVar(true);
+  this.showRejected = new ReactiveVar(true);
+  this.showEmails = new ReactiveVar(false);
+  this.emails = new ReactiveVar([]);
+});
+
+Template.review.onRendered(function() {
+  $('.loading').hide();
 });
 
 Template.review.helpers({
@@ -28,12 +37,25 @@ Template.review.helpers({
   roles() {
     return Roles.find({});
   },
+  showEmails() {
+    return Template.instance().showEmails.get();
+  },
+  emails() {
+    return Template.instance().emails.get().join(', ');
+  },
   applicants() {
+    $('.loading').show();
     const instance = Template.instance();
+    const hideAccepted = !instance.showAccepted.get();
+    const hideRejected = !instance.showRejected.get();
+
     const all = Applicants.find({roles: instance.role.get()}).map(function(applicant) {
       applicant.role = instance.role.get();
       const idx = applicant.roles.indexOf(applicant.role);
       applicant.status = applicant.statuses[idx];
+      if (hideAccepted && applicant.status === 'accepted' || hideRejected && applicant.status === 'rejected') {
+        return;
+      }
 
       const interviewings = Interviewing.find({applicant_id: applicant._id, role: instance.role.get()}).fetch();
       applicant.interviewers = [];
@@ -49,6 +71,7 @@ Template.review.helpers({
       return applicant;
     });
 
+    $('.loading').hide();
     return all.sort(function(a, b) {
       return b.total - a.total;
     });
@@ -65,4 +88,40 @@ Template.review.events({
   'click .change-button'(event, instance) {
     instance.choosingRole.set(true);
   },
+  'click #show-accepted'(event, instance) {
+    instance.showAccepted.set(!instance.showAccepted.get());
+  },
+  'click #show-rejected'(event, instance) {
+    instance.showRejected.set(!instance.showRejected.get());
+  },
+  'click .collect-accepted'(event, instance) {
+    const emails = [];
+    const role = instance.role.get();
+
+    Applicants.find({roles: role}).forEach(function(applicant) {
+      const idx = applicant.roles.indexOf(role);
+      if (applicant.statuses[idx] === 'accepted') {
+        emails.push(applicant._id);
+      }
+    });
+    instance.emails.set(emails);
+    instance.showEmails.set(true);
+  },
+  'click .collect-rejected'(event, instance) {
+    const emails = [];
+    const role = instance.role.get();
+
+    Applicants.find({roles: role}).forEach(function(applicant) {
+      const idx = applicant.roles.indexOf(role);
+      if (applicant.statuses[idx] === 'rejected') {
+        emails.push(applicant._id);
+      }
+    });
+    instance.emails.set(emails);
+    instance.showEmails.set(true);
+  },
+  'click .exit-emails'(event, instance) {
+    instance.showEmails.set(false);
+  },
 });
+

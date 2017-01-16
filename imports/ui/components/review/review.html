@@ -1,4 +1,5 @@
 <template name="review">
+  <div class="loading">Loading&#8230;</div>
   <div class="content">
     {{#if choosingRole}}
     <div class="questions-header">
@@ -13,6 +14,40 @@
     </div>
     {{else}}
     <div class="current-role"><h5>Applicants for <b>{{role}}</b> </h5><a class="change-button waves-effect waves-light btn"><i class="fa fa-pencil"></i> Change</a></div>
+    <div class="show-toggles row">
+      <div class="col s12 m6">
+        <span class="switch">
+          <label>
+            <input type="checkbox" checked="checked">
+            <span id="show-accepted" class="lever"></span>
+            Show accepted
+          </label>
+        </span>
+        <span class="switch">
+          <label>
+            <input type="checkbox" checked="checked">
+            <span id="show-rejected" class="lever"></span>
+            Show rejected
+          </label>
+        </span>
+      </div>
+      <div class="col s12 m6">
+        <a class="waves-effect waves-teal btn-flat collect collect-accepted">Accepted emails</a>
+        <a class="waves-effect waves-teal btn-flat collect collect-rejected">Rejected emails</a>
+      </div>
+    </div>
+    {{#if showEmails}}
+      <br>
+      <div class="row">
+        <div class="card">
+          <div class="card-content">
+          <i class="exit-emails fa fa-times-circle fa-2x" aria-hidden="true"></i>
+            {{> emailsCopyable text=emails}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+    <br>
     <table class="highlight">
       <thead>
         <tr>

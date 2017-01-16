@@ -5,10 +5,16 @@ import './reviewRow.html';
 Template.reviewRow.onCreated(function() {
   Meteor.subscribe('questions');
   Meteor.subscribe('answers');
-  const context = Template.currentData();
 
   this.showMore = new ReactiveVar(false);
-  this.currStatus = new ReactiveVar(context.status);
+  this.currStatus = new ReactiveVar('pending');
+});
+
+Template.reviewRow.onRendered(function() {
+  const context = Template.currentData();
+  if (context) {
+    this.currStatus.set(context.status);
+  }
 });
 
 Template.reviewRow.helpers({
