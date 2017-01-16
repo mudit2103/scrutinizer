@@ -14,7 +14,6 @@ caching-compiler@1.1.8
 caching-html-compiler@1.0.7
 callback-hook@1.0.10
 check@1.2.4
-coffeescript@1.0.17
 ddp@1.2.5
 ddp-client@1.2.9
 ddp-common@1.2.7
@@ -78,7 +77,6 @@ service-configuration@1.0.9
 session@1.1.7
 sha@1.0.9
 shell-server@0.2.1
-softwarerero:accounts-t9n@1.3.5
 spacebars@1.0.13
 spacebars-compiler@1.0.13
 srp@1.0.10
@@ -93,7 +91,5 @@ tracker@1.1.1
 ui@1.0.12
 underscore@1.0.10
 url@1.0.11
-useraccounts:core@1.14.2
-useraccounts:materialize@1.14.2
 webapp@1.3.12
 webapp-hashing@1.0.9

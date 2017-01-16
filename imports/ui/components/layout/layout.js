@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
  
 import './layout.html';
 import './layout.scss';
+import './loginForm.js';
 import '../manage/manage.js';
 import '../review/review.js';
 import '../interview/interview.js';
@@ -15,6 +16,12 @@ Template.layout.onCreated(function bodyOnCreated() {
   this.activeTemplate = new ReactiveVar('review');
   Session.set('role', '');
   Session.set('lastQuestionCategory', '');
+});
+
+Template.layout.helpers({
+  name() {
+    return Meteor.userId() && Meteor.user() && Meteor.user().username ? '(' + Meteor.user().username + ')' : '';
+  }
 });
  
 Template.layout.events({
