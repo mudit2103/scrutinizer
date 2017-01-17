@@ -37,3 +37,28 @@ h5 {
   border: 2px solid #66BB6A;
   border-radius: 4px;
 }
+.no-indent {
+  margin-left: -20px;
+}
+.guidelines {
+  margin-left: 24px;
+}
+ul ul {
+  padding-left: 32px;
+}
+ul.browser-default ul li {
+  list-style-type: circle;
+}
+ul.browser-default ul ul li {
+  list-style-type: square;
+}
+.btn-guidelines {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 800;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.btn-guidelines:hover {
+  transform: scale(1.1);
+}

@@ -55,5 +55,5 @@ Template.question.events({
 });
 
 function toast(s) {
-  Materialize.toast(s, 6000);
+  Materialize.toast(s, 4000);
 }

@@ -9,6 +9,7 @@ import { Materialize } from 'meteor/materialize:materialize';
 import './interview.html';
 import './interview.scss';
 import './qna.js';
+import './guidelines.js';
 
 Template.interview.onCreated(function() {
   Meteor.subscribe('roles');
@@ -111,7 +112,7 @@ function doneSelecting(instance) {
     instance.choosingApplicant.set(false);
 
     const interviewing = Interviewing.findOne({
-      user_id: Meteor.userId(),
+      user_email: Meteor.user().emails[0].address,
       applicant_id: instance.applicant.get('id'),
       role: instance.role.get()
     });

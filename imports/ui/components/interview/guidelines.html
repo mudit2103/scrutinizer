@@ -1,0 +1,13 @@
+<template name="guidelines">
+  <div class="card">
+    <div class="card-content">
+      {{#if showing}}
+        <div id="hide" class="primary-t btn-guidelines">hide guidelines</div>
+        {{{html}}}
+        <div id="hide" class="primary-t btn-guidelines">hide guidelines</div>
+      {{else}}
+        <div id="show" class="primary-t btn-guidelines">show guidelines</div>
+      {{/if}}
+    </div>
+  </div>
+</template>

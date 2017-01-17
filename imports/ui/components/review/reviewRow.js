@@ -42,7 +42,9 @@ Template.reviewRow.helpers({
   notecards() {
     const cards = [];
     for(var i = 0; i < this.interviewers.length; i++) {
-      cards.push({interviewer: this.interviewers[i], interviewer_notes: this.notes[i], interviewer_score: this.scores[i]});
+      cards.push({interviewer: this.interviewers[i],
+                  interviewer_notes: this.notes[i].replace(/\n/g, "<br />"),
+                  interviewer_score: this.scores[i]});
     }
     return cards;
   },
@@ -52,6 +54,7 @@ Template.reviewRow.helpers({
       if (question) {
         answer.question = question.text;
       }
+      answer.text = answer.text.replace(/\n/g, "<br />");
       return answer;
     });
   },
@@ -74,9 +77,9 @@ Template.reviewRow.events({
       status: 'accepted'
     }, function(err) {
       if (err) {
-        Materialize.toast(err.reason, 6000);
+        Materialize.toast(err.reason, 4000);
       } else {
-        Materialize.toast('Saved acceptance', 6000);
+        Materialize.toast('Saved acceptance', 4000);
       }
     });
     instance.currStatus.set('accepted');
@@ -89,9 +92,9 @@ Template.reviewRow.events({
       status: 'rejected'
     }, function(err) {
       if (err) {
-        Materialize.toast(err.reason, 6000);
+        Materialize.toast(err.reason, 4000);
       } else {
-        Materialize.toast('Saved rejection', 6000);
+        Materialize.toast('Saved rejection', 4000);
       }
     });
     instance.currStatus.set('rejected');

@@ -14,6 +14,8 @@ import './layout.routes.js';
 
 Template.layout.onCreated(function bodyOnCreated() {
   this.activeTemplate = new ReactiveVar('review');
+  this.title = new ReactiveVar('CSM Scrutinizer');
+
   Session.set('role', '');
   Session.set('lastQuestionCategory', '');
 });
@@ -21,11 +23,21 @@ Template.layout.onCreated(function bodyOnCreated() {
 Template.layout.helpers({
   name() {
     return Meteor.userId() && Meteor.user() && Meteor.user().username ? '(' + Meteor.user().username + ')' : '';
-  }
+  },
+  title() {
+    return Template.instance().title.get();
+  },
 });
  
 Template.layout.events({
   'click #signout'(event) {
     Meteor.logout();
   },
+  'click #nav-mobile a'(event, instance) {
+    if (event.target.getAttribute('id') === 'showInterview') {
+      instance.title.set('Remember to hit save!');
+    } else {
+      instance.title.set('CSM Scrutinizer');
+    }
+  }
 });

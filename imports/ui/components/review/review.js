@@ -63,7 +63,7 @@ Template.review.helpers({
       applicant.total = 0;
       applicant.notes = [];
       _.each(interviewings, function(i) {
-        applicant.interviewers.push(i.user_id);
+        applicant.interviewers.push(i.user_email);
         applicant.scores.push(i.score);
         applicant.total += i.score;
         applicant.notes.push(i.notes);

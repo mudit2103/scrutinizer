@@ -28,9 +28,9 @@ Template.qna.events({
       text: instance.$('#answer-' + this._id).val()
     }, function(err) {
       if (err) {
-        Materialize.toast(err.reason, 6000);
+        Materialize.toast(err.reason, 4000);
       } else {
-        Materialize.toast('Saved answer!', 6000);
+        Materialize.toast('Saved answer!', 4000);
       }
     });
   },

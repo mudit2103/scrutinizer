@@ -10,8 +10,10 @@ if (Meteor.isServer) {
   Meteor.publish('interviewing.mine', function() {
     if (!this.userId) {
       return null;
+    } else {
+      const user = Meteor.users.findOne(this.userId);
+      return Interviewing.find({user_email: user.emails[0].address});
     }
-    return Interviewing.find({user_id: this.userId});
   });
   Meteor.publish('interviewing.all', function() {
     if (!this.userId) {
@@ -33,16 +35,16 @@ Meteor.methods({
     check(score, Number);
     check(notes, String);
 
-    const user_id = Meteor.user().emails[0].address;
+    const user_email = Meteor.user().emails[0].address;
 
     const selector = {
-      user_id: user_id,
+      user_email: user_email,
       applicant_id: applicant_id,
       role: role
     };
     const modifier = {
       $set: {
-        user_id: user_id,
+        user_email: user_email,
         applicant_id: applicant_id,
         role: role,
         score: score,

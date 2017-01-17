@@ -1,10 +1,10 @@
 <template name="layout">
   <nav>
     <div class="nav-wrapper primary">
-      <span class="brand-logo center">CSM Scrutinizer</span>
+      <span class="brand-logo center">{{title}}</span>
       {{#if currentUser}}
         <ul id="nav-mobile" class="left">
-          <li><a id="showInterview" href="/review">Review</a></li>
+          <li><a id="showReview" href="/review">Review</a></li>
           <li><a id="showInterview" href="/interview">Interview</a></li>
         </ul>
 

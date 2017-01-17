@@ -51,7 +51,7 @@ Template.questions.events({
   'click .add-question'(event, instance) {
     Meteor.call('questions.new', {role: instance.role.get(), category: Session.get('lastQuestionCategory')}, function(err) {
       if (err) {
-        Materialize.toast(err.reason, 6000);
+        Materialize.toast(err.reason, 4000);
       }
     });
   },
