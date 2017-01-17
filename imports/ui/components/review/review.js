@@ -4,6 +4,7 @@ import { Questions } from '../../../api/questions.js';
 import { Roles } from '../../../api/roles.js';
 import { Applicants } from '../../../api/applicants.js';
 import { Interviewing } from '../../../api/interviewing.js';
+import { Materialize } from 'meteor/materialize:materialize';
 import './review.html';
 import './review.css';
 import './reviewRow.js';
@@ -97,28 +98,34 @@ Template.review.events({
   'click .collect-accepted'(event, instance) {
     const emails = [];
     const role = instance.role.get();
+    var count = 0;
 
     Applicants.find({roles: role}).forEach(function(applicant) {
       const idx = applicant.roles.indexOf(role);
       if (applicant.statuses[idx] === 'accepted') {
         emails.push(applicant._id);
+        count++;
       }
     });
     instance.emails.set(emails);
     instance.showEmails.set(true);
+    Materialize.toast('Collecting ' + count + ' acceptances', 4000);
   },
   'click .collect-rejected'(event, instance) {
     const emails = [];
     const role = instance.role.get();
+    var count = 0;
 
     Applicants.find({roles: role}).forEach(function(applicant) {
       const idx = applicant.roles.indexOf(role);
       if (applicant.statuses[idx] === 'rejected') {
         emails.push(applicant._id);
+        count++;
       }
     });
     instance.emails.set(emails);
     instance.showEmails.set(true);
+    Materialize.toast('Collecting ' + count + ' rejections', 4000);
   },
   'click .exit-emails'(event, instance) {
     instance.showEmails.set(false);
