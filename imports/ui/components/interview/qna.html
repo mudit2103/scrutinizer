@@ -1,11 +1,11 @@
 <template name="qna">
   <div class="qna-wrapper">
-    <p><span class="label">Question: </span> {{text}} <div class="save-qna primary-t">save</div></p>
+    <p><span class="label">Question: </span> {{text}} <div class="save-hidden save-qna primary-t">save</div></p>
     <div class="row">
       <form class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="answer-{{_id}}" class="materialize-textarea"></textarea>
+            <textarea id="answer-{{_id}}" class="materialize-textarea">{{answerTracker}}</textarea>
             <label class="active" for="answer">Answer</label>
           </div>
         </div>

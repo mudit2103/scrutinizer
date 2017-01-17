@@ -66,6 +66,9 @@ Template.interview.events({
     event.preventDefault();
     instance.nameInput.set(event.target.value);
   },
+  'click .save-global'(event, instance) {
+    $('.save-hidden').click();
+  },
   'click .applicant-item'(event, instance) {
     const target = $(event.target);
     const name = target.text();
@@ -98,7 +101,7 @@ Template.interview.events({
       if (err) {
         Materialize.toast(err.reason, 4000);
       } else {
-        Materialize.toast('Saved score and notes', 4000);
+        Materialize.toast('Saved score and notes', 2000);
       }
     });
   },
@@ -127,21 +130,23 @@ function doneSelecting(instance) {
         $('#notes').val(interviewing.notes);
       }, 400);
     } else {
-      Meteor.call('interviewing.upsert', {
-        applicant_id: instance.applicant.get('id'),
-        role: instance.role.get(),
-        score: 3,
-        notes: ''
-      }, function(err) {
-        if (err) {
-          Materialize.toast(err.reason, 4000);
-          instance.choosingApplicant.set(true);
-          instance.nameSelected = false;
-          instance.roleSelected = false;
-        }
-        instance.interviewing.set('score', 3);
-        instance.interviewing.set('notes', '');
-      });
+      // Meteor.call('interviewing.upsert', {
+      //   applicant_id: instance.applicant.get('id'),
+      //   role: instance.role.get(),
+      //   score: 3,
+      //   notes: ''
+      // }, function(err) {
+      //   if (err) {
+      //     Materialize.toast(err.reason, 4000);
+      //     instance.choosingApplicant.set(true);
+      //     instance.nameSelected = false;
+      //     instance.roleSelected = false;
+      //   }
+      //   instance.interviewing.set('score', 3);
+      //   instance.interviewing.set('notes', '');
+      // });
+      instance.interviewing.set('score', 3);
+      instance.interviewing.set('notes', '');
     }
   }
 }

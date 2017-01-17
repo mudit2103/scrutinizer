@@ -29,8 +29,11 @@
     </div>
     {{else}}
     <div class="current-role"><h5>I am interviewing <b>{{name}}</b> for <b>{{role}}</b> </h5><a class="change-button waves-effect waves-light btn"><i class="fa fa-pencil"></i> Change</a></div>
+    <div class="row">
+      <a style="min-width: 100%" class="save-global primary btn-large waves-effect waves-light btn">save all</a>
+    </div>
     <div class="score-card">
-      <div class="save-interviewing primary-t">save</div>
+      <div class="save-hidden save-interviewing primary-t">save</div>
       <form action="#">
         <div class="row">
           <div class="input-field col s6">
