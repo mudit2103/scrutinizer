@@ -23,3 +23,7 @@ Router.route('/interview', function() {
 Router.route('/questions', function() {
   this.render('questions');
 });
+
+Router.route('/history', function() {
+  this.render('history');
+});

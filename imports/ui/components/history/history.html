@@ -1,0 +1,11 @@
+<template name="history">
+  <div class="content">
+    <h5>My past interviews</h5>
+    <p><b>Click a row to edit your score / notes / answers for that interview</b></p>
+    <div class="collection">
+      {{#each interviews}}
+      <a href="" name="{{name}}" role="{{role}}" class="interviews-row collection-item">{{name}} for {{role}}</a>
+      {{/each}}
+    </div>
+  </div>
+</template>

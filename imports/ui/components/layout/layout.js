@@ -10,6 +10,7 @@ import '../manage/manage.js';
 import '../review/review.js';
 import '../interview/interview.js';
 import '../questions/questions.js';
+import '../history/history.js';
 import './layout.routes.js';
 
 Template.layout.onCreated(function bodyOnCreated() {

@@ -14,7 +14,6 @@ import './guidelines.js';
 Template.interview.onCreated(function() {
   Meteor.subscribe('roles');
   Meteor.subscribe('questions');
-  Meteor.subscribe('applicants');
   Meteor.subscribe('interviewing.mine');
 
   this.choosingApplicant = new ReactiveVar(true);
@@ -25,6 +24,28 @@ Template.interview.onCreated(function() {
   this.nameInput = new ReactiveVar('');
   this.nameSelected = false;
   this.roleSelected = false;
+
+  // This is for href from /history selection
+
+  if (Session.get('historyRole') && Session.get('historyName')) {
+    this.choosingApplicant = new ReactiveVar(false);
+    const self = this;
+
+    Meteor.subscribe('applicants', function() {
+      const applicant = Applicants.findOne({name: Session.get('historyName')})
+      self.applicant.set('name', applicant.name);
+      self.applicant.set('id', applicant._id);
+      self.nameSelected = true;
+      doneSelecting(self);
+    });
+
+    this.role.set(Session.get('historyRole'));
+    this.roleSelected = true;
+    doneSelecting(this);
+
+  } else {
+    Meteor.subscribe('applicants');
+  }
 });
 
 Template.interview.helpers({
@@ -105,7 +126,7 @@ Template.interview.events({
       }
     });
   },
-  'mousemove #score'(event, instance) {
+  'input #score'(event, instance) {
     instance.interviewing.set('score', parseFloat(event.target.value));
   },
 });
