@@ -61,20 +61,23 @@ Template.review.helpers({
       const interviewings = Interviewing.find({applicant_id: applicant._id, role: instance.role.get()}).fetch();
       applicant.interviewers = [];
       applicant.scores = [];
-      applicant.total = 0;
+      applicant.weight = 0;
       applicant.notes = [];
       _.each(interviewings, function(i) {
         applicant.interviewers.push(i.user_email);
         applicant.scores.push(i.score);
-        applicant.total += i.score;
+        applicant.weight += i.score;
         applicant.notes.push(i.notes);
       });
+      if (interviewings.length > 0) {
+        applicant.weight /= interviewings.length;
+      }
       return applicant;
     });
 
     $('.loading').hide();
     return all.sort(function(a, b) {
-      return b.total - a.total;
+      return b.weight - a.weight;
     });
   },
 });

@@ -46,6 +46,7 @@ Template.qna.events({
         Materialize.toast(err.reason, 4000);
       } else {
         Materialize.toast('Saved your answer!', 2000);
+        instance.modified.set(false);
       }
     });
   },
