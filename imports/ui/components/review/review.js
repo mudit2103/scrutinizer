@@ -115,14 +115,14 @@ Template.review.events({
     instance.showEmails.set(true);
     Materialize.toast('Collecting ' + count + ' acceptances', 4000);
   },
-  'click .collect-rejected'(event, instance) {
+  'click .collect-non'(event, instance) {
     const emails = [];
     const role = instance.role.get();
     var count = 0;
 
     Applicants.find({roles: role}).forEach(function(applicant) {
       const idx = applicant.roles.indexOf(role);
-      if (applicant.statuses[idx] === 'rejected') {
+      if (applicant.statuses[idx] !== 'accepted') {
         emails.push(applicant._id);
         count++;
       }
