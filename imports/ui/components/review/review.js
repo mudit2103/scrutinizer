@@ -45,7 +45,6 @@ Template.review.helpers({
     return Template.instance().emails.get().join(', ');
   },
   applicants() {
-    $('.loading').show();
     const instance = Template.instance();
     const hideAccepted = !instance.showAccepted.get();
     const hideRejected = !instance.showRejected.get();
@@ -75,8 +74,10 @@ Template.review.helpers({
       return applicant;
     });
 
-    $('.loading').hide();
     return all.sort(function(a, b) {
+      if (a.weight === b.weight) {
+        return a.name.localeCompare(b.name);
+      }
       return b.weight - a.weight;
     });
   },
