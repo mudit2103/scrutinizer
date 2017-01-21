@@ -4,7 +4,7 @@
     <p><b>Click a row to edit your score / notes / answers for that interview</b></p>
     <div class="collection">
       {{#each interviews}}
-      <a href="" name="{{name}}" role="{{role}}" class="interviews-row collection-item">{{name}} for {{role}}</a>
+      <a href="" name="{{name}}" role="{{role}}" class="interviews-row collection-item">({{score}}) <b>{{name}}</b> &nbsp;for&nbsp; <b>{{role}}</b></a>
       {{/each}}
     </div>
   </div>
