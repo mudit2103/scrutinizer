@@ -11,8 +11,7 @@ if (Meteor.isServer) {
     if (!this.userId) {
       return null;
     } else {
-      const user = Meteor.users.findOne(this.userId);
-      return Interviewing.find({user_email: user.emails[0].address});
+      return Interviewing.find({user_email: user.emails[0].address})
     }
   });
   Meteor.publish('interviewing.all', function() {

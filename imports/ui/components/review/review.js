@@ -62,7 +62,14 @@ Template.review.helpers({
       applicant.scores = [];
       applicant.weight = 0;
       applicant.notes = [];
+      applicant.interviewer_name = [];
       _.each(interviewings, function(i) {
+        const usernameToPush = Meteor.users.findOne({ "emails": { $elemMatch: { "address": i.user_email, "verified":false } } }).username
+
+        applicant.interviewer_name.push(usernameToPush);
+
+
+
         applicant.interviewers.push(i.user_email);
         applicant.scores.push(i.score);
         applicant.weight += i.score;
