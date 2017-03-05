@@ -11,6 +11,7 @@ if (Meteor.isServer) {
     if (!this.userId) {
       return null;
     } else {
+      const user =
       return Interviewing.find({user_email: user.emails[0].address})
     }
   });
