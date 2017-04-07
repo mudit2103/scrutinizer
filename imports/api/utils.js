@@ -11,6 +11,10 @@ if (Meteor.isServer) {
   Meteor.publish('guidelines', function() {
     return Guidelines.find({});
   });
+  Meteor.publish('allUserData', function() {
+    return Meteor.users.find({});
+  });
+
 }
 
 export const requireLogin = function(userId) {

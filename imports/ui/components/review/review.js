@@ -15,6 +15,7 @@ Template.review.onCreated(function() {
   Meteor.subscribe('roles');
   Meteor.subscribe('questions');
   Meteor.subscribe('interviewing.all');
+  Meteor.subscribe('allUserData');
 
   this.choosingRole = new ReactiveVar(true);
   this.role = new ReactiveVar('');
@@ -62,11 +63,11 @@ Template.review.helpers({
       applicant.scores = [];
       applicant.weight = 0;
       applicant.notes = [];
-      applicant.interviewer_name = [];
+      applicant.interviewer_names = [];
       _.each(interviewings, function(i) {
-        const usernameToPush = Meteor.users.findOne({ "emails": { $elemMatch: { "address": i.user_email, "verified":false } } }).username
+        const usernameToPush = Meteor.users.findOne({ emails: { $elemMatch: { address: i.user_email } } }).username
 
-        applicant.interviewer_name.push(usernameToPush);
+        applicant.interviewer_names.push(usernameToPush);
 
 
 
