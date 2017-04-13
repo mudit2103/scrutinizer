@@ -43,6 +43,7 @@ Template.reviewRow.helpers({
     const cards = [];
     for(var i = 0; i < this.interviewers.length; i++) {
       cards.push({interviewer: this.interviewers[i],
+                  interviewer_name: this.interviewer_names[i],
                   interviewer_notes: this.notes[i].replace(/\n/g, "<br />"),
                   interviewer_score: this.scores[i]});
     }
