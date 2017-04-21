@@ -27,3 +27,7 @@ Router.route('/questions', function() {
 Router.route('/history', function() {
   this.render('history');
 });
+
+Router.route('/calendar', function() {
+	this.render('calendar')
+})
